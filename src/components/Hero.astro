@@ -1,0 +1,51 @@
+<section
+  class="relative min-h-screen bg-cover bg-center flex flex-col"
+  style="background-image: url('/hero.jpg');"
+>
+  <!-- Overlay oscuro -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- Navbar -->
+  <header class="relative z-20 flex items-center justify-between px-8 py-6">
+    <!-- Logo -->
+    <div class="text-white font-bold text-xl">
+      <div class="border-2 border-white w-16 h-16 flex items-center justify-center">
+        LOGO
+      </div>
+    </div>
+
+    <!-- Menú -->
+    <nav class="text-white font-medium space-x-8">
+      <a href="#inicio" class="hover:text-yellow-400 border-b-2 border-yellow-400 pb-1">INICIO</a>
+      <a href="#quienes" class="hover:text-yellow-400">QUIÉNES SOMOS</a>
+      <a href="#productos" class="hover:text-yellow-400">PRODUCTOS</a>
+      <a href="#novedades" class="hover:text-yellow-400">NOVEDADES</a>
+      <a href="#contacto" class="hover:text-yellow-400">CONTACTO</a>
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <div class="relative z-10 flex flex-col items-center justify-center flex-1 text-center text-white px-6">
+    <h3 class="text-lg md:text-xl tracking-widest font-semibold uppercase">
+      Del campo a la mesa
+    </h3>
+
+    <h1 class="mt-3 text-3xl md:text-5xl font-extrabold leading-snug">
+      Con lo mejor del <span class="text-yellow-400">maíz</span> y el
+      <span class="text-yellow-400">trigo</span>
+    </h1>
+
+    <!-- Íconos -->
+    <div class="flex gap-6 mt-6 text-4xl">
+      🌽 🌾
+    </div>
+
+    <!-- Botón -->
+    <a
+      href="#contacto"
+      class="mt-8 inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:from-yellow-500 hover:to-orange-600 transition"
+    >
+      CONTACTO
+    </a>
+  </div>
+</section>
