@@ -1,0 +1,278 @@
+---
+---
+
+<section class="products-section" id="productos">
+  <div class="products-header">
+    <h1>NUESTROS PRODUCTOS</h1>
+  </div>
+
+  <div class="products-content">
+    <h2 class="category-title">HARINAS</h2>
+    
+    <div class="slider-container">
+      <div class="products-grid" id="products-grid">
+        <!-- Producto 1 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="./public/producto.png" alt="producto" width="200" height="200">
+          </div>
+          <div class="product-label red">HARINA DE TRIGO TIPO 000</div>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="./public/producto.png" alt="producto" width="200" height="200">
+          </div>
+          <div class="product-label orange">SALVADO DE TRIGO</div>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="./public/producto.png" alt="producto" width="200" height="200">
+          </div>
+          <div class="product-label green">SÉMOLA DE TRIGO</div>
+        </div>
+
+        <!-- Producto 4 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="./public/producto.png" alt="producto" width="200" height="200">
+          </div>
+          <div class="product-label blue">HARINA INTEGRAL</div>
+        </div>
+
+        <!-- Producto 5 -->
+        <div class="product-card">
+          <div class="product-image">
+           <img src="./public/producto.png" alt="producto" width="200" height="200">
+          </div>
+          <div class="product-label purple">HARINA DE MAÍZ</div>
+        </div>
+
+        <!-- Producto 6 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="./public/producto.png" alt="producto" width="200" height="200">
+          </div>
+          <div class="product-label teal">HARINA ESPECIAL</div>
+        </div>
+      </div>
+
+      <!-- Navigation buttons -->
+      <button class="nav-btn prev" id="prevBtn">‹</button>
+      <button class="nav-btn next" id="nextBtn">›</button>
+    </div>
+
+    <div class="products-tagline">
+      <p>Del campo a tu mesa, con calidad y tradición</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .products-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+    color: white;
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    padding-top: 100px;
+  }
+
+  .products-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .products-header {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    padding: 2rem;
+    text-align: center;
+  }
+
+  .products-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin: 0;
+  }
+
+  .products-content {
+    padding: 3rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .category-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #f59e0b;
+  }
+
+  .slider-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 1rem;
+  }
+
+  .products-grid {
+    display: flex;
+    gap: 1.5rem;
+    transition: transform 0.3s ease;
+    padding: 1rem 0;
+  }
+
+  .product-card {
+    flex: 0 0 350px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-image {
+    background: white;
+    border-radius: 10px;
+    padding: 2.5rem;
+    margin-bottom: 1.5rem;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .flour-bag {
+    font-size: 4rem;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.2));
+  }
+
+  .product-label {
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .product-label.red { background: #dc2626; }
+  .product-label.orange { background: #f59e0b; }
+  .product-label.green { background: #059669; }
+  .product-label.blue { background: #2563eb; }
+  .product-label.purple { background: #7c3aed; }
+  .product-label.teal { background: #0d9488; }
+
+  .nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: bold;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .nav-btn:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .prev { left: 10px; }
+  .next { right: 10px; }
+
+  .products-tagline {
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .products-tagline p {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #d1d5db;
+  }
+
+  @media (max-width: 768px) {
+    .products-content {
+      padding: 2rem 1rem;
+    }
+
+    .product-card {
+      flex: 0 0 280px;
+    }
+
+    .products-grid {
+      gap: 1rem;
+    }
+
+    .category-title {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const grid = document.getElementById('products-grid');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    
+    let currentIndex = 0;
+    const cardWidth = 366; // 350px + 16px gap
+    const visibleCards = window.innerWidth > 768 ? 3 : 1;
+    const maxIndex = Math.max(0, 6 - visibleCards);
+    
+    function updateSlider() {
+      const translateX = currentIndex * cardWidth * -1;
+      grid.style.transform = `translateX(${translateX}px)`;
+      
+      // Update button states
+      prevBtn.style.opacity = currentIndex === 0 ? '0.5' : '1';
+      nextBtn.style.opacity = currentIndex >= maxIndex ? '0.5' : '1';
+    }
+    
+    prevBtn.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      if (currentIndex < maxIndex) {
+        currentIndex++;
+        updateSlider();
+      }
+    });
+    
+    // Initialize
+    updateSlider();
+    
+    // Handle resize
+    window.addEventListener('resize', () => {
+      currentIndex = 0;
+      updateSlider();
+    });
+  });
+</script>

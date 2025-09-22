@@ -1,0 +1,569 @@
+---
+// EmapaSlider.astro
+export interface Props {
+  slides: Array<{
+    image: string;
+    title: string;
+    subtitle?: string;
+  }>;
+  height?: string;
+  autoplay?: boolean;
+  interval?: number;
+  className?: string;
+}
+
+const { 
+  slides = [],
+  height = "70vh",
+  autoplay = true,
+  interval = 5000,
+  className = "" 
+} = Astro.props;
+---
+
+<section class={`emapa-slider ${className}`} style={`--slider-height: ${height}`}>
+  <div class="slider-wrapper">
+    <div class="slider-track" id="emapaSliderTrack">
+      {slides.map((slide, index) => (
+        <div class="emapa-slide" data-index={index}>
+          <div class="slide-image-container">
+            <img src={slide.image} alt={slide.title} class="slide-image" />
+            <div class="slide-overlay"></div>
+          </div>
+          
+
+          
+
+
+          
+          <div class="slide-content">
+            <div class="content-container">
+
+<div class="hero-text">
+      <p class="hero-subtitle">DEL CAMPO A LA MESA</p>
+      <h1 class="hero-title">CON LO MEJOR DEL MAÍZ Y EL TRIGO</h1>
+      
+      <div class="hero-icons">
+        <img class="icon" src="public/maiz.png" alt="Maíz" width="80" />
+        <img class="icon" src="public/espiga-de-trigo.png" alt="Trigo" width="80" />
+      </div>
+    </div>
+    
+    <div class="hero-cta">
+      <a href="#contacto" class="cta-button nav-link">
+        CONTACTO
+        <span class="arrow">›</span>
+      </a>
+    </div>
+
+
+
+
+             <!-- {slide.subtitle && (
+                <p class="slide-subtitle">{slide.subtitle}</p>
+              )}
+              <h2 class="slide-title">{slide.title}</h2> --> 
+
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button class="nav-arrow nav-prev" id="emapaPrev">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+    
+    <button class="nav-arrow nav-next" id="emapaNext">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <!-- Dots Indicator -->
+    <div class="dots-indicator" id="emapaDots">
+      {slides.map((_, index) => (
+        <button class="dot" data-index={index}></button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .emapa-slider {
+    position: relative;
+    width: 100%;
+    height: var(--slider-height);
+    overflow: hidden;
+    background: #f8fafc;
+  }
+
+  .slider-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slider-track {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s ease-in-out;
+  }
+
+  .emapa-slide {
+    min-width: 100%;
+    position: relative;
+    height: 100%;
+  }
+
+  .slide-image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.5) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.4) 100%
+    );
+  }
+
+  .slide-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 3rem 2rem 2rem 2rem;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.6) 50%,
+      transparent 100%
+    );
+    color: white;
+  }
+
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .slide-subtitle {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: #e2e8f0;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.5px;
+    opacity: 0.9;
+  }
+
+  .slide-title {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    max-width: 800px;
+  }
+
+  /* Navigation Arrows */
+  .nav-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-arrow:hover {
+    background: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-prev {
+    left: 20px;
+  }
+
+  .nav-next {
+    right: 20px;
+  }
+
+  .nav-arrow svg {
+    color: #374151;
+  }
+
+  /* Dots Indicator */
+  .dots-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .dot.active {
+    background: white;
+    transform: scale(1.2);
+  }
+
+  .dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .emapa-slider {
+      height: 60vh;
+    }
+    
+    .slide-content {
+      padding: 2rem 1.5rem 1.5rem 1.5rem;
+    }
+    
+    .slide-title {
+      font-size: clamp(1.5rem, 5vw, 2rem);
+    }
+    
+    .nav-arrow {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .nav-prev {
+      left: 15px;
+    }
+    
+    .nav-next {
+      right: 15px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .emapa-slider {
+      height: 50vh;
+    }
+    
+    .slide-content {
+      padding: 1.5rem 1rem 1rem 1rem;
+    }
+    
+    .slide-subtitle {
+      font-size: 0.85rem;
+    }
+    
+    .slide-title {
+      font-size: clamp(1.25rem, 6vw, 1.75rem);
+    }
+    
+    .nav-arrow {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .nav-prev {
+      left: 10px;
+    }
+    
+    .nav-next {
+      right: 10px;
+    }
+    
+    .dots-indicator {
+      bottom: 15px;
+    }
+    
+    .dot {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .emapa-slider {
+      height: 45vh;
+    }
+    
+    .slide-content {
+      padding: 1rem 0.75rem 0.75rem 0.75rem;
+    }
+  }
+
+
+  .hero-subtitle {
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: white;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .hero-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .icon {
+    font-size: 2rem;
+    padding: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+
+  .icon:hover {
+    border-color: #f59e0b;
+    transform: scale(1.1);
+    background: rgba(245, 158, 11, 0.1);
+  }
+
+  .hero-cta {
+    margin-top: 2rem;
+  }
+
+  .cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(45deg, #f59e0b, #d97706);
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+    border: 2px solid transparent;
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(245, 158, 11, 0.4);
+    background: linear-gradient(45deg, #d97706, #f59e0b);
+  }
+
+  .arrow {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+  }
+
+  .cta-button:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: 0 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      letter-spacing: 2px;
+    }
+
+    .hero-icons {
+      gap: 1rem;
+    }
+
+    .icon {
+      font-size: 1.5rem;
+      padding: 0.8rem;
+    }
+
+    .cta-button {
+      padding: 0.8rem 2rem;
+      font-size: 12px;
+    }
+  }
+</style>
+
+<script>
+  class EmapaSlider {
+    constructor() {
+      this.currentSlide = 0;
+      this.slides = document.querySelectorAll('.emapa-slide');
+      this.totalSlides = this.slides.length;
+      this.autoplay = true;
+      this.interval = 5000;
+      this.autoplayTimer = null;
+      this.isTransitioning = false;
+
+      this.init();
+    }
+
+    init() {
+      if (this.totalSlides === 0) return;
+
+      this.setupEventListeners();
+      this.updateSlider();
+      this.startAutoplay();
+    }
+
+    setupEventListeners() {
+      const prevBtn = document.getElementById('emapaPrev');
+      const nextBtn = document.getElementById('emapaNext');
+      const dots = document.querySelectorAll('.dot');
+
+      prevBtn?.addEventListener('click', () => this.goToPrevSlide());
+      nextBtn?.addEventListener('click', () => this.goToNextSlide());
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => this.goToSlide(index));
+      });
+
+      // Pause autoplay on hover
+      const slider = document.querySelector('.emapa-slider');
+      slider?.addEventListener('mouseenter', () => this.pauseAutoplay());
+      slider?.addEventListener('mouseleave', () => this.startAutoplay());
+
+      // Touch/swipe support
+      this.setupTouchEvents();
+    }
+
+    setupTouchEvents() {
+      const slider = document.querySelector('.emapa-slider');
+      let startX = 0;
+      let endX = 0;
+
+      slider?.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+      });
+
+      slider?.addEventListener('touchend', (e) => {
+        endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        
+        if (Math.abs(diff) > 50) { // Minimum swipe distance
+          if (diff > 0) {
+            this.goToNextSlide();
+          } else {
+            this.goToPrevSlide();
+          }
+        }
+      });
+    }
+
+    goToSlide(index) {
+      if (this.isTransitioning || index === this.currentSlide) return;
+      
+      this.currentSlide = index;
+      this.updateSlider();
+      this.resetAutoplay();
+    }
+
+    goToNextSlide() {
+      const nextSlide = (this.currentSlide + 1) % this.totalSlides;
+      this.goToSlide(nextSlide);
+    }
+
+    goToPrevSlide() {
+      const prevSlide = this.currentSlide === 0 ? this.totalSlides - 1 : this.currentSlide - 1;
+      this.goToSlide(prevSlide);
+    }
+
+    updateSlider() {
+      this.isTransitioning = true;
+      
+      const track = document.getElementById('emapaSliderTrack');
+      const offset = -this.currentSlide * 100;
+      track.style.transform = `translateX(${offset}%)`;
+
+      // Update dots
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === this.currentSlide);
+      });
+
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 600);
+    }
+
+    startAutoplay() {
+      if (!this.autoplay) return;
+      
+      this.pauseAutoplay();
+      this.autoplayTimer = setTimeout(() => {
+        this.goToNextSlide();
+        this.startAutoplay();
+      }, this.interval);
+    }
+
+    pauseAutoplay() {
+      if (this.autoplayTimer) {
+        clearTimeout(this.autoplayTimer);
+        this.autoplayTimer = null;
+      }
+    }
+
+    resetAutoplay() {
+      this.pauseAutoplay();
+      this.startAutoplay();
+    }
+  }
+
+  // Initialize slider when DOM is loaded
+  document.addEventListener('DOMContentLoaded', () => {
+    new EmapaSlider();
+  });
+</script>

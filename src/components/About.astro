@@ -1,0 +1,275 @@
+---
+import Leyes from './Leyes.astro';
+
+---
+
+<section class="about-section" id="quienes-somos">
+  <div class="about-header">
+    <div class="header-background"></div>
+    <h1 class="about-title">PLANTA PROCESADORA DE TRIGO Y DERIVADOS RAQAYPAMPA</h1>
+    <h2 class="company-name">TIKITA</h2>
+  </div>
+
+  <div class="about-content">
+    <div class="about-description">
+      <h3>QUIÉNES SOMOS</h3>
+      <p>
+        La Planta Procesadora de Trigo Raqaypampa TIKITA nace en el corazón de un Gobierno Autónomo Indígena Originario Campesino
+        (GAIOC), como una respuesta concreta al deseo de transformar la producción agrícola local en valor agregado, empleo y soberanía
+        alimentaria.
+      </p>
+      <p>
+        Este proyecto es más que una planta: es una herramienta de desarrollo económico y social. Generamos empleos para hombres y
+        mujeres de la comunidad, dinamizamos la economía regional y llevamos productos sanos y accesibles a las familias bolivianas.
+        Hoy trabajamos con responsabilidad para abandonar el programa del desayuno escolar, y soñamos con llevar nuestros productos a
+        cada rincón del país.
+      </p>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-card mission">
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/>
+          </svg>
+        </div>
+        <h4>MISIÓN</h4>
+        <p>
+          Somos una Empresa Pública Comunitaria dedicada a la industrialización del trigo y
+          maíz en harina y derivados, enriqueciendo tradiciones, transformando e innovando
+          para satisfacer las expectativas de nuestros clientes y cuidando nuestro entorno.
+        </p>
+      </div>
+
+      <div class="value-card vision">
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <h4>VISIÓN</h4>
+        <p>
+          Ser la Empresa Comunitaria líder en los mercados de harinas en los que
+          participemos, incrementando la utilidad por medio de crecimiento,
+          innovación y excelencia para 2030.
+        </p>
+      </div>
+
+      <div class="value-card values">
+        <div class="card-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h4>VALORES</h4>
+        <ul>
+          <li>Compromiso</li>
+          <li>Calidad</li>
+          <li>Transparencia</li>
+          <li>Trabajo comunitario</li>
+          <li>Identidad cultural</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+<Leyes />
+</section>
+
+<style>
+  .about-section {
+    min-height: 100vh;
+    background: #f5f5f5;
+    color: #333;
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    padding-top: 100px; /* Espacio para el navbar fixed */
+  }
+
+  .about-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .about-header {
+    position: relative;
+    background: linear-gradient(135deg, #10b981, #059669);
+    padding: 2rem 2rem;
+    text-align: center;
+    color: white;
+    overflow: hidden;
+  }
+
+  .header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+      linear-gradient(-45deg, rgba(255,255,255,0.1) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.1) 75%),
+      linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.1) 75%);
+    background-size: 30px 30px;
+    background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+  }
+
+  .about-title {
+    font-size: clamp(1.2rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .company-name {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .about-description {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .about-description h3 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .about-description p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .value-card {
+    padding: 2.5rem;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .mission {
+    background: linear-gradient(135deg, #dc2626, #991b1b);
+  }
+
+  .vision {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+  }
+
+  .values {
+    background: linear-gradient(135deg, #059669, #047857);
+  }
+
+  .card-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    backdrop-filter: blur(10px);
+  }
+
+  .value-card h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+  }
+
+  .value-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.95;
+  }
+
+  .value-card ul {
+    list-style: none;
+    text-align: left;
+  }
+
+  .value-card li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .value-card li:before {
+    content: "•";
+    color: #fff;
+    font-weight: bold;
+    width: 1rem;
+    margin-right: 0.5rem;
+  }
+
+  .value-card li:last-child {
+    border-bottom: none;
+  }
+
+  @media (max-width: 768px) {
+    .about-header {
+      padding: 3rem 1rem 1.5rem;
+    }
+
+    .about-content {
+      padding: 3rem 1rem;
+    }
+
+    .values-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .value-card {
+      padding: 2rem;
+    }
+
+    .about-description h3 {
+      font-size: 2rem;
+    }
+  }
+</style>
