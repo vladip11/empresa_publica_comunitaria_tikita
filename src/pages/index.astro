@@ -1,13 +1,127 @@
+
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Products from '../components/Products.astro';
+import News from '../components/News.astro';
+import Contact from '../components/Contact.astro';
+
 ---
 
-<Layout>
-  <!-- Aquí puedes seguir agregando más secciones debajo del hero -->
-  <section id="quienes" class="py-20 text-center">
-    <h2 class="text-3xl font-bold mb-4">Quiénes Somos</h2>
-    <p class="max-w-2xl mx-auto text-lg text-gray-700">
-      Somos una empresa pública comunitaria que trabaja con maíz y trigo de alta calidad.
-    </p>
-  </section>
+<Layout title="Del Campo a la Mesa">
+  <main id="app-container">
+    <Navbar />
+    <Hero />
+    <About />
+    <Products />
+    <News />
+    <Contact />
+	
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Elementos
+      const navbar = document.querySelector('.navbar');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const heroSection = document.querySelector('.hero');
+      const aboutSection = document.querySelector('.about-section');
+      const productsSection = document.querySelector('.products-section');
+      const newsSection = document.querySelector('.news-section');
+      const contactSection = document.querySelector('.contact-section');
+      
+      // Función para manejar el scroll del navbar
+      function handleNavbarScroll() {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      }
+
+      // Función para mostrar/ocultar secciones
+      function showSection(targetSection) {
+        // Ocultar todas las secciones
+        heroSection.style.display = 'none';
+        aboutSection.classList.remove('active');
+        productsSection.classList.remove('active');
+        newsSection.classList.remove('active');
+        contactSection.classList.remove('active');
+        
+        // Scroll to top para evitar problemas de posicionamiento
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
+        // Mostrar la sección objetivo con delay para smooth transition
+        setTimeout(() => {
+          if (targetSection === 'about') {
+            aboutSection.classList.add('active');
+            navbar.classList.add('scrolled');
+          } else if (targetSection === 'products') {
+            productsSection.classList.add('active');
+            navbar.classList.add('scrolled');
+          } else if (targetSection === 'news') {
+            newsSection.classList.add('active');
+            navbar.classList.add('scrolled');
+          } else if (targetSection === 'contact') {
+            contactSection.classList.add('active');
+            navbar.classList.add('scrolled');
+          } else {
+            heroSection.style.display = 'flex';
+            navbar.classList.remove('scrolled');
+          }
+        }, 100);
+      }
+
+      // Event listeners para los enlaces del navbar
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          
+          // Remover clase active de todos los enlaces
+          navLinks.forEach(l => l.classList.remove('active'));
+          
+          // Agregar clase active al enlace clickeado
+          this.classList.add('active');
+          
+          // Determinar qué sección mostrar
+          const href = this.getAttribute('href');
+          
+          if (href === '#quienes-somos') {
+            showSection('about');
+          } else if (href === '#inicio') {
+            showSection('home');
+          } else if (href === '#productos') {
+            showSection('products');
+          } else if (href === '#novedades') {
+            showSection('news');
+          } else if (href === '#contacto') {
+            showSection('contact');
+          }
+          // Aquí puedes agregar más secciones según necesites
+        });
+      });
+      
+      // Event listener para scroll (solo funciona en hero)
+      window.addEventListener('scroll', () => {
+        if (heroSection.style.display !== 'none') {
+          handleNavbarScroll();
+        }
+      });
+      
+      // Smooth scroll para el botón de contacto en el hero
+      const ctaButton = document.querySelector('.cta-button');
+      if (ctaButton) {
+        ctaButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          // Cambiar a la sección de contacto
+          navLinks.forEach(l => l.classList.remove('active'));
+          const contactLink = document.querySelector('a[href="#contacto"]');
+          if (contactLink) contactLink.classList.add('active');
+          showSection('contact');
+        });
+      }
+    });
+  </script>
 </Layout>
